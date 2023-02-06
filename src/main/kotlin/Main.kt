@@ -1,7 +1,30 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+import java.util.*
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+fun main(args: Array<String>) {
+    hello ()
+}
+
+fun hello () {
+    val scannerStart  = Scanner(System.`in`)
+    when (scannerStart.nextLine()) {
+        "start" -> {
+            println("RobCo Pip-Boy 2000 приветствует вас! Авторизуйтесь.")
+            val name = scannerStart.nextLine()
+            println("Привет, $name!")
+        }
+        "help" -> {
+            println("Доступные комманды:")
+            println("1. Запуск программы - start;")
+            println("2. Завершение программы - end.")
+            hello ()
+        }
+        "end" -> {
+            println("Удачи!")
+            return
+        }
+        else -> {
+            println("Команда не может быть обработанна. Для вызова справки воспользуйтесь командой - help")
+            hello ()
+        }
+    }
 }
