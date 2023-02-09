@@ -1,5 +1,7 @@
 import java.util.*
 
+var countPark = 0
+
 fun main(args: Array<String>) {
 
     val cars = fillCarBase()
@@ -16,20 +18,44 @@ fun hello(parkingMap: MutableMap<Int, Car?>) {
     val input = scannerStart.nextLine()
 
     when (Command.from(input)) {
-        Command.START -> manager.start(scannerStart)
+        Command.START -> {
+            manager.start(scannerStart)
+            hello(parkingMap)
+        }
         Command.HELP -> {
             manager.help()
             hello(parkingMap)
         }
         Command.END -> manager.end()
-        Command.RETURN -> manager.returnCar(scannerStart, parkingMap)
-        Command.PARKING -> manager.parking(scannerStart, parkingMap)
-        Command.PARK_BY_CAR -> manager.parkInfoByCar(scannerStart, parkingMap)
-        Command.PARK_BY_PLACE -> manager.parkInfoByPlace(scannerStart, parkingMap)
+        Command.RETURN -> {
+            manager.returnCar(scannerStart, parkingMap)
+            hello(parkingMap)
+        }
+        Command.PARKING -> {
+            manager.parking(scannerStart, parkingMap)
+            hello(parkingMap)
+        }
+        Command.PARK_BY_CAR -> {
+            manager.parkInfoByCar(scannerStart, parkingMap)
+            hello(parkingMap)
+        }
+        Command.PARK_BY_PLACE -> {
+            manager.parkInfoByPlace(scannerStart, parkingMap)
+            hello(parkingMap)
+        }
+        Command.PARK_STATS -> {
+            manager.parkStat(countPark)
+            hello(parkingMap)
+        }
+        Command.PARK_LOAD -> {
+            manager.parkLoad(parkingMap)
+            hello(parkingMap)
+        }
         null -> {
             println("Команда не может быть обработанна. Для вызова справки воспользуйтесь командой - help")
             hello(parkingMap)
         }
+
     }
 }
 
